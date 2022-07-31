@@ -9,7 +9,7 @@ import java.text.MessageFormat;
 @Component
 public class QueueConsumer {
 
-    @RabbitListener(queues = {"${queue.teste}"})
+    @RabbitListener(queues = {"${rmq-properties.queue}"})
     public void receive(@Payload String fileBody) {
         System.out.println(MessageFormat.format("Message: {0}", fileBody));
     }

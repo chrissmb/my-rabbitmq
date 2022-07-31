@@ -18,4 +18,9 @@ public class SendMessageController {
     public void sendMessage(@RequestBody String message) {
         queueSenderService.send(message);
     }
+
+    @PostMapping("exchange")
+    public void sendMessageExchange(@RequestBody String message) {
+        queueSenderService.sendWithExchange(message);
+    }
 }
