@@ -14,19 +14,16 @@ public class QueueSenderService {
     private RabbitTemplate rabbitTemplate;
 
     @Autowired
-    private Queue queue;
+    private Queue queueCreatePerson;
 
     @Autowired
     private AmqpTemplate amqpTemplate;
 
-    @Autowired
-    private RabbitMqProperties properties;
-
     public void send(String message) {
-        rabbitTemplate.convertAndSend(queue.getName(), message);
+        rabbitTemplate.convertAndSend(queueCreatePerson.getName(), message);
     }
 
     public void sendWithExchange(String message) {
-        amqpTemplate.convertAndSend(properties.getExchange(), properties.getRoutingKey(), message);
+        amqpTemplate.convertAndSend(RabbitMqProperties.DX_PERSON, RabbitMqProperties.RK_UPDATE_PERSON, message);
     }
 }
