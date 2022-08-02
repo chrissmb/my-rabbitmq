@@ -1,14 +1,10 @@
 package com.example.myrabbitmq.schema;
 
-import java.util.Date;
-
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 
+import java.util.Date;
+
 @Data
-@AllArgsConstructor
-@Builder
 public class Person {
     
     private Long id;

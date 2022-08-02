@@ -1,10 +1,10 @@
 package com.example.myrabbitmq.consumer;
 
+import com.example.myrabbitmq.configuration.RabbitMqProperties;
+import com.example.myrabbitmq.schema.Person;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
-
-import com.example.myrabbitmq.configuration.RabbitMqProperties;
 
 import java.text.MessageFormat;
 
@@ -17,13 +17,13 @@ public class QueueConsumer {
     }
 
     @RabbitListener(queues = {RabbitMqProperties.Q_CREATE_PERSON})
-    public void receiveCreatePerson(@Payload String fileBody) {
-        printMessage(RabbitMqProperties.Q_CREATE_PERSON, fileBody);
+    public void receiveCreatePerson(@Payload Person fileBody) {
+        printMessage(RabbitMqProperties.Q_CREATE_PERSON, fileBody.toString());
     }
 
     @RabbitListener(queues = {RabbitMqProperties.Q_UPDATE_PERSON})
-    public void receiveUpdatePerson(@Payload String fileBody) {
-        printMessage(RabbitMqProperties.Q_UPDATE_PERSON, fileBody);
+    public void receiveUpdatePerson(@Payload Person fileBody) {
+        printMessage(RabbitMqProperties.Q_UPDATE_PERSON, fileBody.toString());
     }
 
     private void printMessage(String queue, String message) {
