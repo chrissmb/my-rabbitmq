@@ -11,6 +11,11 @@ import java.text.MessageFormat;
 @Component
 public class QueueConsumer {
 
+    @RabbitListener(queues = {RabbitMqProperties.Q_MESSAGE})
+    public void receiveMessage(@Payload String fileBody) {
+        printMessage(RabbitMqProperties.Q_MESSAGE, fileBody);
+    }
+
     @RabbitListener(queues = {RabbitMqProperties.Q_CREATE_PERSON})
     public void receiveCreatePerson(@Payload String fileBody) {
         printMessage(RabbitMqProperties.Q_CREATE_PERSON, fileBody);
